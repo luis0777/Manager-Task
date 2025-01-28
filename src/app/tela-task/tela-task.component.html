@@ -1,0 +1,129 @@
+<header>
+  <div class="card flex">
+    <p-sidebar [(visible)]="sidebarVisible">
+      <div class="justify-content-center flex">
+        <h3>Manager Task</h3>
+      </div>
+
+      <ul class="list-none p-3 m-0">
+        <li>
+          <ul class="list-none p-0 m-0 overflow-hidden">
+            <li>
+              <a
+                pRipple
+                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+              >
+                <i class="pi pi-folder mr-2"></i>
+                <span class="font-medium" (click)="navegationToRouteManager()"
+                  >Registrar Tarefa</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                pRipple
+                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+              >
+                <i class="pi pi-chart-bar mr-2"></i>
+                <span class="font-medium" (click)="navegationToRouteTask()"
+                  >Ver tarefas</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                pRipple
+                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+              >
+                <i class="pi pi-chart-bar mr-2"></i>
+                <span class="font-medium" (click)="navegationToRouteRegister()"
+                  >Sair</span
+                >
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </p-sidebar>
+    <p-button (onClick)="sidebarVisible = true" icon="pi pi-arrow-right" />
+  </div>
+</header>
+
+<body>
+  <div class="w-11 h-auto flex justify-content-center">
+    <div
+      class="w-9 flex justify-content-center aling-items-center flex-column surface-100 p-6"
+    >
+      <form action="#">
+        <div class="mb-6 flex justify-content-between">
+          <div class="title">
+            <h1>Task</h1>
+          </div>
+        </div>
+
+        <!-- <div class="mb-6 flex justify-content-between">
+          <label for="descricao">Tarefa</label>
+          <label for="descricao">Descrição</label>
+          <label for="descricao">Inicio</label>
+          <label for="descricao">Fim</label>
+          <label for="descricao">Nivel</label>
+          <label for="descricao">Status</label>
+        </div>
+
+        <div class="mb-6 flex justify-content-between">
+          <label for="descricao">Estudos</label>
+          <label for="descricao">Estudar Angular</label>
+          <label for="descricao">12/04/2024</label>
+          <label for="descricao">15/06/2025</label>
+          <label for="descricao">Baixo</label>
+          <p-inputSwitch />
+        </div>
+
+        <div class="mb-6 flex justify-content-between">
+          <label for="descricao">Estudos</label>
+          <label for="descricao">Estudar JAVA</label>
+          <label for="descricao">15/12/2024</label>
+          <label for="descricao">15/01/2025</label>
+          <label for="descricao">Medio</label>
+          <p-toggleButton onLabel="On" offLabel="Off" />
+        </div> -->
+
+        <div class="card">
+          <p-table
+            [value]="products"
+            [paginator]="true"
+            [rows]="5"
+            [responsive]="true"
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Tarefa</th>
+                <th>Descrição</th>
+                <th>Inicio</th>
+                <th>Fim</th>
+                <th>Nivel</th>
+                <th>Status</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+              <tr>
+                <td>{{ product.Tarefa }}</td>
+                <td>{{ product.Descricao }}</td>
+                <td>{{ product.Inicio }}</td>
+                <td>{{ product.Fim }}</td>
+                <td>{{ product.Nivel }}</td>
+                <td>
+                  <p-inputSwitch />
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+
+        <div class="mb-6 flex justify-content-between">
+          <p-button label="Voltar" (onClick)="navegationToRouteManager()" />
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

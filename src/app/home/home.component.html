@@ -1,0 +1,184 @@
+<body>
+  <div class="w-11 h-auto flex justify-content-center">
+    <div
+      class="w-9 flex justify-content-center aling-items-center flex-column surface-100 p-6 bg-bluegray-50"
+    >
+      <form action="#">
+        <div class="flex justify-content-between">
+          <div class="title">
+            <h1>Cadastro</h1>
+          </div>
+          <div class="flex justify-content-between">
+            <div class="card flex justify-content-center">
+              <p-button (onClick)="showDialog()" label="Login" />
+              <p-dialog
+                header="Faça seu login"
+                [modal]="true"
+                [(visible)]="visible"
+                [style]="{ width: '25rem' }"
+              >
+                <span class="p-text-secondary block mb-5"
+                  >Insira suas informações.</span
+                >
+                <div class="flex align-items-center gap-3 mb-3">
+                  <label for="email" class="font-semibold w-6rem">Email</label>
+                  <input
+                    pInputText
+                    id="Email"
+                    class="flex-auto"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="flex align-items-center gap-3 mb-5">
+                  <label for="senha" class="font-semibold w-6rem">Senha</label>
+                  <p-password [feedback]="false" 
+                   />
+                </div>
+                <div class="flex justify-content-end gap-2">
+                  <p-button
+                    label="Entrar"
+                    (onClick)="navegationToRouteManager()"
+                  />
+                </div>
+              </p-dialog>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <p-stepper orientation="vertical">
+            <p-stepperPanel header="Digite o seu nome completo">
+              <ng-template
+                pTemplate="content"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div class="flex flex-column">
+                  <div
+                    class="flex-basic-25 flex aling-items-center justify-content-center p-2 flex-column"
+                  >
+                    <label for="descricao">Nome completo</label>
+                    <input type="text" pInputText variant="filled" />
+                  </div>
+                </div>
+                <div class="flex">
+                  <p-button label="Próximo" (onClick)="nextCallback.emit()" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+            <p-stepperPanel header="Email">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div
+                  class="flex-basic-25 flex aling-items-center justify-content-center p-2 flex-column"
+                >
+                  <label for="descricao">Digite seu email</label>
+                  <input type="text" pInputText variant="filled" />
+                </div>
+                <div class="flex">
+                  <p-button
+                    label="Voltar"
+                    severity="secondary"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-button label="Próximo" (onClick)="nextCallback.emit()" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+
+            <p-stepperPanel header="Data de nascimento">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div
+                  class="flex-basic-25 flex aling-items-center justify-content-between p-2 gap-1 flex-column"
+                >
+                  <label for="data-nascimento"
+                    >Ecolha a data de nascimento</label
+                  >
+                  <p-calendar
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    inputId="icondisplay"
+                  />
+                </div>
+
+                <div class="flex">
+                  <p-button
+                    label="Voltar"
+                    severity="secondary"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-button label="Próximo" (onClick)="nextCallback.emit()" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+
+            <p-stepperPanel header="Telefone">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <p-inputMask
+                  mask="99-999999999"
+                  [(ngModel)]="value"
+                  placeholder="99-999999999"
+                />
+                <div class="flex">
+                  <p-button
+                    label="Voltar"
+                    severity="secondary"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-button label="Cadastrar" (onClick)="nextCallback.emit()" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+            <p-stepperPanel header="Senha">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <p-password [toggleMask]="true" />
+
+                <div class="flex">
+                  <p-button
+                    label="Voltar"
+                    severity="secondary"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-toast />
+                  <p-confirmPopup>
+                    <ng-template pTemplate="content" let-message>
+                      <div
+                        class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3"
+                      >
+                        <i
+                          [class]="message.icon"
+                          class="text-6xl text-primary-500"
+                        ></i>
+                        <p>{{ message.message }}</p>
+                      </div>
+                    </ng-template>
+                  </p-confirmPopup>
+                  <p-button (onClick)="confirmAndNavigate($event)" label="Cadastrar" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+          </p-stepper>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

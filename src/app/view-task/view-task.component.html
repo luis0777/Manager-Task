@@ -1,0 +1,230 @@
+<header>
+  <div class="card flex">
+    <p-sidebar [(visible)]="sidebarVisible">
+      <div class="justify-content-center flex">
+        <h3>Manager Task</h3>
+      </div>
+
+      <ul class="list-none p-3 m-0">
+        <li>
+          <ul class="list-none p-0 m-0 overflow-hidden">
+            <li>
+              <a
+                pRipple
+                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+              >
+                <i class="pi pi-folder mr-2"></i>
+                <span class="font-medium" (click)="navegationToRouteManager()"
+                  >Registrar Tarefa</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                pRipple
+                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+              >
+                <i class="pi pi-chart-bar mr-2"></i>
+                <span class="font-medium" (click)="navegationToRouteTask()"
+                  >Ver tarefas</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                pRipple
+                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+              >
+                <i class="pi pi-chart-bar mr-2"></i>
+                <span class="font-medium" (click)="navegationToRouteRegister()"
+                  >Sair</span
+                >
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </p-sidebar>
+    <p-button (onClick)="sidebarVisible = true" icon="pi pi-arrow-right" />
+  </div>
+</header>
+<body>
+  <div class="w-11 h-auto flex justify-content-center">
+    <div
+      class="w-9 flex justify-content-center aling-items-center flex-column surface-100 p-6 bg-bluegray-50"
+    >
+      <form action="#">
+        <div class="flex justify-content-between">
+          <div class="title">
+            <h1>Manager Task</h1>
+          </div>
+          <div class="flex justify-content-between">
+            <p-button label="Ver Tarefas" (onClick)="navegationToRouteTask()" />
+          </div>
+        </div>
+
+        <div class="card">
+          <p-stepper orientation="vertical">
+            <p-stepperPanel header="Nome da tarefa">
+              <ng-template
+                pTemplate="content"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div class="flex flex-column">
+                  <div
+                    class="flex-basic-25 flex aling-items-center justify-content-center p-2 flex-column"
+                  >
+                    <label for="descricao">Nome da tarefa</label>
+                    <input type="text" pInputText variant="filled" />
+                  </div>
+                </div>
+                <div class="flex">
+                  <p-button label="Próximo" (onClick)="nextCallback.emit()" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+            <p-stepperPanel header="Descrição">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div
+                  class="flex-basic-25 flex aling-items-center justify-content-center p-2 flex-column"
+                >
+                  <label for="descricao">Descrição</label>
+                  <textarea
+                    variant="filled"
+                    rows="5"
+                    cols="30"
+                    pInputTextarea
+                  ></textarea>
+                </div>
+                <div class="flex">
+                  <p-button
+                    label="Voltar"
+                    severity="secondary"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-button label="Próximo" (onClick)="nextCallback.emit()" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+
+            <p-stepperPanel header="Datas">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div
+                  class="flex-basic-25 flex aling-items-center justify-content-between p-2 gap-1 flex-column"
+                >
+                  <label for="data-inicio">Data de Inicio</label>
+                  <p-calendar
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    inputId="icondisplay"
+                  />
+
+                  <label for="data-inicio">Data de Entrega</label>
+                  <p-calendar
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    inputId="icondisplay"
+                  />
+                </div>
+
+                <div class="flex">
+                  <p-button
+                    label="Voltar"
+                    severity="secondary"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-button label="Próximo" (onClick)="nextCallback.emit()" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+
+            <p-stepperPanel header="Exigência">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div
+                  class="flex-basic-25 flex aling-items-center justify-content-center flex-column mb-5"
+                >
+                  <div class="gender-title p-3">
+                    <h4>Nivel de Exigência</h4>
+                  </div>
+
+                  <div class="flex flex-wrap gap-3">
+                    <div class="flex align-items-center">
+                      <p-radioButton
+                        name="pizza"
+                        value="Cheese"
+                        [(ngModel)]="ingredient"
+                        inputId="ingredient1"
+                      />
+                      <label for="ingredient1" class="ml-2"> Baixo </label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                      <p-radioButton
+                        name="pizza"
+                        value="Mushroom"
+                        [(ngModel)]="ingredient"
+                        inputId="ingredient2"
+                      />
+                      <label for="ingredient2" class="ml-2"> Médio </label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                      <p-radioButton
+                        name="pizza"
+                        value="Pepper"
+                        [(ngModel)]="ingredient"
+                        inputId="ingredient3"
+                      />
+                      <label for="ingredient3" class="ml-2"> Importante </label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                      <p-radioButton
+                        name="pizza"
+                        value="Onion"
+                        [(ngModel)]="ingredient"
+                        inputId="ingredient4"
+                      />
+                      <label for="ingredient4" class="ml-2"> Urgente </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex">
+                  <p-button
+                    label="Voltar"
+                    severity="secondary"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-toast />
+                  <p-button
+                    type="button"
+                    (onClick)="showSuccess()"
+                    label="Cadastrar"
+                    severity="success"
+                  />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+            
+          </p-stepper>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
